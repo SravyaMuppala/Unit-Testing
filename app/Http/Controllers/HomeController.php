@@ -31,13 +31,10 @@ class HomeController extends Controller
     {
 
         //$users=User::all();
-        $users=User::where('id',1)
-            ->orderBy('name','desc')
-            ->take(10)
-            ->get();
+        $user = Auth::user();
+        //you need to call posts to retrieve records without the()
+        $posts = $user->posts;
 
-        dd($users->count());
-
-        return view('profile',['users' => $users]);
+        return view('profile',['posts' => $posts]);
     }
 }
