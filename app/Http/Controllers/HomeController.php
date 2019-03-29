@@ -30,9 +30,13 @@ class HomeController extends Controller
     public function profile()
     {
 
-        $user=User::find(2);
-        $user->delete();
-        $users=User::all();
+        //$users=User::all();
+        $users=User::where('id',1)
+            ->orderBy('name','desc')
+            ->take(10)
+            ->get();
+
+        dd($users->count());
 
         return view('profile',['users' => $users]);
     }
